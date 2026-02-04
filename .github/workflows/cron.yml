@@ -4,9 +4,9 @@ on:
   schedule:
     # Les heures sont en UTC (France = UTC+1 en hiver, UTC+2 en été)
     # 07:00 UTC = 08:00 à Paris (Hiver)
-    - cron: '0 7 * * *'
+    - cron: '0 7 * * 1-5'
     # 16:50 UTC = 17:50 à Paris (Hiver)
-    - cron: '50 16 * * *'
+    - cron: '50 16 * * 1-5'
   workflow_dispatch: # Permet de lancer le script manuellement pour tester
 
 jobs:
