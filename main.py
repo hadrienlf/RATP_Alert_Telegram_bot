@@ -5,6 +5,8 @@ import sys
 from dotenv import load_dotenv
 
 import datetime
+import html
+import re
 
 # Charge les variables d'environnement depuis le fichier .env (si présent, pour le local)
 load_dotenv()
@@ -19,6 +21,18 @@ LINES = {
     "Ligne 13": "line:IDFM:C01383",
     "RER E": "line:IDFM:C01729"
 }
+
+def clean_html(text):
+    """Nettoie le HTML et les entités (ex: &#224; -> à)"""
+    if not text:
+        return ""
+    # 1. Décoder les entités HTML
+    text = html.unescape(text)
+    # 2. Remplacer les <br> par des sauts de ligne
+    text = text.replace('<br>', '\n').replace('<br/>', '\n').replace('<br />', '\n')
+    # 3. Supprimer les autres balises HTML (regex)
+    text = re.sub('<[^<]+?>', '', text)
+    return text.strip()
 
 def send_telegram(text):
     # En mode manuel, on affiche aussi dans la console
@@ -107,6 +121,9 @@ def check_line(line_name, line_id):
                         break
                 if cause == "Détail non disponible" and traffic_disruption.get("messages"):
                      cause = traffic_disruption["messages"][0].get("text", "")
+                
+                # Nettoyage du HTML (accents, balises)
+                cause = clean_html(cause)
 
                 message = f"{prefix}⚠️ Perturbation sur la {line_name}\nStatut : {severity}\nDétails : {cause}"
                 send_telegram(message)
