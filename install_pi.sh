@@ -35,6 +35,12 @@ if [ ! -f "$WORKDIR/.env" ]; then
 fi
 
 # 4. Configure Systemd Service
+echo "🔒 Securing .env file..."
+if [ -f "$WORKDIR/.env" ]; then
+    chmod 600 "$WORKDIR/.env"
+    echo "   Permissions set to 600 (owner read/write only)."
+fi
+
 echo "⚙️  Configuring Systemd Service..."
 
 SERVICE_FILE="/etc/systemd/system/ratp-bot.service"
