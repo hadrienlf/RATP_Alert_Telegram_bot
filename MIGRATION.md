@@ -64,11 +64,19 @@ This guide explains how to move your RATP Bot from GitHub Actions to your local 
     sudo systemctl start ratp-bot.timer
     ```
 
-- **Update Code**:
-    If you push changes to GitHub, update the Pi with:
+- **Update Code (Logic Only)**:
+    If you just changed python code (`main.py`):
     ```bash
     git pull
     # If requirements changed:
     ./venv/bin/pip install -r requirements.txt
     ```
-    (No need to restart the timer, it just triggers the script).
+    (No need to restart, the next run will use the new code).
+
+- **Update Configuration (Timer/Schedule)**:
+    If you changed `systemd/ratp-bot.timer` or `.env`:
+    ```bash
+    git pull
+    # Re-run installer to update systemd files and reload
+    ./install_pi.sh
+    ```
