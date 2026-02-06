@@ -1,0 +1,18 @@
+[Unit]
+Description=RATP Monitor Bot
+After=network.target
+
+[Service]
+Type=oneshot
+WorkingDirectory={{WORKDIR}}
+# We prefer using the python executable from the venv directly
+ExecStart={{PYTHON_CMD}} main.py
+# Environment variables will be loaded from the .env file if it exists, 
+# but we can also set the file explicitly if needed. 
+# Here we rely on the python script loading the .env itself via python-dotenv, 
+# but ensuring the CWD is correct is critical.
+User={{USER}}
+Group={{USER}}
+
+[Install]
+WantedBy=multi-user.target
