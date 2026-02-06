@@ -1,13 +1,13 @@
 name: RATP_Monitor_Cron
 
-on:
-  schedule:
-    # Les heures sont en UTC (France = UTC+1 en hiver, UTC+2 en été)
-    # 07:00 UTC = 08:00 à Paris (Hiver)
-    - cron: '58 6 * * 1-5'
-    # 16:50 UTC = 17:50 à Paris (Hiver)
-    - cron: '53 16 * * 1-5'
-  workflow_dispatch: # Permet de lancer le script manuellement pour tester
+# on:
+#   schedule:
+#     # Les heures sont en UTC (France = UTC+1 en hiver, UTC+2 en été)
+#     # 07:00 UTC = 08:00 à Paris (Hiver)
+#     - cron: '58 6 * * 1-5'
+#     # 16:50 UTC = 17:50 à Paris (Hiver)
+#     - cron: '53 16 * * 1-5'
+#   workflow_dispatch: # Permet de lancer le script manuellement pour tester
 
 jobs:
   run_script:
