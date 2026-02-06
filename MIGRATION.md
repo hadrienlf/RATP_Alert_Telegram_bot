@@ -58,6 +58,12 @@ This guide explains how to move your RATP Bot from GitHub Actions to your local 
     sudo systemctl disable ratp-bot.timer
     ```
 
+- **Resume the schedule**:
+    ```bash
+    sudo systemctl enable ratp-bot.timer
+    sudo systemctl start ratp-bot.timer
+    ```
+
 - **Update Code**:
     If you push changes to GitHub, update the Pi with:
     ```bash

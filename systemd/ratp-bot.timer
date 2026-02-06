@@ -3,10 +3,10 @@ Description=Timer for RATP Monitor Bot
 
 [Timer]
 # Cron equivalent: 0 7 * * 1-5 (UTC) -> 08:00 Paris (assuming Paris machine timezone)
-# Cron equivalent: 50 16 * * 1-5 (UTC) -> 17:50 Paris
+# Cron equivalent: 50 16 * * 1-5 (UTC) -> 17:58 Paris
 # Note: OnCalendar uses the local timezone of the machine.
 OnCalendar=Mon..Fri *-*-* 08:00:00
-OnCalendar=Mon..Fri *-*-* 17:50:00
+OnCalendar=Mon..Fri *-*-* 17:58:00
 Persistent=false
 
 [Install]
